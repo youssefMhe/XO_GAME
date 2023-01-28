@@ -1,0 +1,25 @@
+<div class="content-center text-center m-0  ">
+  <div class="font-bold p-4">Welcome to the game</div>
+</div>
+
+<h2 *ngIf="   (winner===null&& try! < 9 )|| (finishGame!==true)"
+    class=" content-center text-center  underline md:underline-offset-auto">Current player {{try}}<samp
+  class="font-extrabold"> {{player}}</samp></h2>
+
+<div class="content-center text-center ml-auto mr-auto  py-3.5 pt-6">
+  <button (click)="newGame()" *ngIf="winner || finishGame===true "
+          class="rounded-2xl bg-amber-400 hover:bg-amber-500 hover:text-white animate-bounce font-bold  w-auto h-1/3  p-4 shadow-lg shadow-indigo-500/50">
+    Start new game
+  </button>
+  <h2 *ngIf="winner" class="content-center text-center ">The player who won the game is <span
+    class="font-bold">{{winner}}</span> ! </h2>
+</div>
+
+<main>
+
+  <app-square
+    [winner]='winner'
+    *ngFor="let val of squares ; let i = index"
+    [value]="val"
+    (click)="makeMove(i)"/>
+</main>
